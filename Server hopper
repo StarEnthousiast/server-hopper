@@ -2,9 +2,9 @@ wait(10)
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local BlacklistedPlayers = {
-    "blacklistedplayer1",
-    "blacklistedplayer2",
-    "blacklistedplayer3"
+    "BrendaParker7",
+    "universoul20",
+    "universoul30"
 }
 
 local AltsPlayers = {
