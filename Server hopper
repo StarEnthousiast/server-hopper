@@ -1,0 +1,56 @@
+wait(10)
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local BlacklistedPlayers = {
+    "blacklistedplayer1",
+    "blacklistedplayer2",
+    "blacklistedplayer3"
+}
+
+local AltsPlayers = {
+    "BrendaParker7",
+    "universoul20",
+    "universoul30"
+}
+
+for i,player in pairs(AltsPlayers) do
+    if player == tostring(Player) then
+        table.remove(AltsPlayers, i)
+    end
+end
+
+for i,player in pairs(Players:GetPlayers()) do
+    if table.find(AltsPlayers, player.Name) then
+        table.insert(BlacklistedPlayers, player.Name)
+    end
+end
+
+for k, v in pairs(BlacklistedPlayers) do print(k, v) end
+
+for _, v in pairs(Players:GetPlayers()) do
+    if table.find(BlacklistedPlayers, v.Name) then
+        print("bl was found")
+        wait(math.random(0, 60)) --so that if two alts joined at the same time they dont get redirected to a similar server again at same time
+        loadstring("https://raw.githubusercontent.com/Root1527/personal/main/silly.lua"))()
+    else
+        print("no one found")
+    end
+end
+
+Players.PlayerAdded:Connect(function(v)
+    print(v.Name)
+    print("joined")
+    if table.find(BlacklistedPlayers, v.Name) then
+        print("a bl joined")
+        loadstring("https://raw.githubusercontent.com/Root1527/personal/main/silly.lua"))()
+    end
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+    print(player.Name)
+    print(#Players:GetPlayers())
+    if #Players:GetPlayers() < 7 then --put nb ppl under which it will change serv
+        print("less than 6 ppl left")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Root1527/personal/main/silly.lua"))()
+    end
+end)
